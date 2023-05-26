@@ -6,7 +6,7 @@
 
 <tr>
     <td>@Model.Title</td>
-    <td>@Model.Author</td>
+    <td>@Model.Author.FirstName @Model.Author.LastName</td>
     <td>@localDateTime.ToLongDateString() @localDateTime.ToShortTimeString()</td>
     <td>
         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>

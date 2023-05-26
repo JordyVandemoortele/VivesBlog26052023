@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using VivesBlog.Ui.Mvc.Core;
 using VivesBlog.Ui.Mvc.Models;
@@ -17,7 +18,9 @@ namespace VivesBlog.Ui.Mvc.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var articles = _dbContext.Articles.ToList();
+            var articles = _dbContext.Articles
+                            .Include(a => a.Author)
+                            .ToList();
             return View(articles);
         }
 

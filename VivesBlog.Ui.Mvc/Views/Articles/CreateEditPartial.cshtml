@@ -1,5 +1,9 @@
 ﻿@model Article
 
+@{
+    var authors = (IList<Person>)ViewBag.Authors;
+}
+
 <div asp-validation-summary="ModelOnly"></div>
 
 <div class="mb-3">
@@ -13,9 +17,13 @@
     <span asp-validation-for="Description"></span>
 </div>
 <div class="mb-3">
-    <label asp-for="AuthorId" class="form-label"></label>
-    <input asp-for="AuthorId" class="form-control" />
-    <span asp-validation-for="AuthorId"></span>
+    <label asp-for="AuthorId" class="form-label">Author:</label>
+    <select asp-for="AuthorId" class="form-control">
+        @foreach (var author in authors)
+        {
+            <option value="@author.Id">@author.FirstName @author.LastName</option>
+        }
+    </select>
 </div>
 <div class="mb-3">
     <label asp-for="Content" class="form-label"></label>
